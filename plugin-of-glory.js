@@ -1,4 +1,4 @@
-(function ($) {'use strict';
+(function ($, _) {'use strict';
   // The `jQuery.fn` property is really just an alias for `jQuery.prototype`.
   // See https://github.com/jquery/jquery/blob/1.11.0/src/core.js#L36.
 
@@ -19,20 +19,18 @@
    * _.map: http://underscorejs.org/#map
   */
   $.panic = function () {
-    var panicClass, messages = [];
+    var messages = _.map(['PANIC', 'WARNING', 'DANGER'], function (message) {
+      var p = document.createElement('p');
+      p.appendChild(document.createTextNode(message + '!'));
 
-    for (var i = 0; i < 3; i++) {
-      messages.push(document.createElement('p'));
-
-      panicClass = document.createAttribute('class');
+      var panicClass = document.createAttribute('class');
       panicClass.nodeValue = 'panic';
-      messages[i].setAttributeNode(panicClass);
-    }
-    messages[0].appendChild(document.createTextNode('PANIC!'));
-    messages[1].appendChild(document.createTextNode('WARNING!'));
-    messages[2].appendChild(document.createTextNode('DANGER!'));
+      p.setAttributeNode(panicClass);
+
+      return p;
+    });
 
     $('#container').append(messages);
   };
 
-})(window.jQuery);
+})(window.jQuery, window._);
