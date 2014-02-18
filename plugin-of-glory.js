@@ -4,11 +4,12 @@
 
   // Define `greenify()`,
   // http://learn.jquery.com/plugins/basic-plugin-creation/#basic-plugin-authoring
-  $.prototype.greenify = function () {
-    this.css('color', 'rgb(0, 179, 0)');
+  $.prototype.greenify = function (options) {
+    // Use default options
+    var settings = $.extend({ color: '#556b2f' }, options);
 
     // To enable method chaning for this method, return the jQuery object:
-    return this;
+    return this.css({ color: settings.color });
   };
 
   /*
