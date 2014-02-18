@@ -4,18 +4,66 @@
 	<title>Example jQuery Plugin</title>
 
 	<style>
+		body {
+			background-color: #1f1f1f;
+			font-family: proxima-nova, Helvetica, Arial, sans-serif;
+		}
 		#container {
-			border: thin solid red;
+			/* border: thin dashed red; */
+			color: #ccc;
 			margin: auto;
+			padding-left: 1.5em;
+			padding-right: 1.5em;
+			width: 600px;
+		}
+		#header {
 			text-align: center;
-			width: 550px;
+		}
+		p {
+			line-height: 1.5em;
+		}
+		code {
+			background-color: rgb(235, 235, 235);
+			color: black;
+			font-family: monospace,serif;
+			font-size: 0.9em;
+		}
+		strong {
+			color: rgb(231, 95, 88);
 		}
 	</style>
 
+	<!--
+	Using `async="true"` allows the DOMContentLoaded event to fire before this
+	file is finished downloading:
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js" async="true"></script>
+	-->
 </head>
 <body>
 	<div id="container">
-		<h1>Example jQuery Plugin</h1>
+		<h1 id="header">Example jQuery Plugin</h1>
+		<p>
+			A jQuery plugin is simply
+			<strong>a new method that we use to extend jQuery's prototype object</strong>.
+			By extending the prototype object you enable all jQuery objects
+			to inherit any methods that you add. As established, whenever you call
+			<code>jQuery()</code> you're creating a new jQuery object, with all of
+			jQuery's methods inherited.
+		</p>
+		<p>This is a demonstration of the <code>greenify()</code> method:</p>
+		<p class="greenify">This will be green.</p>
+		<p>This will not.</p>
+		<p class="greenify">But this will be green too.</p>
 	</div>
+
+	<!-- Even when placed at the end here, this still blocks DOMContentLoaded event -->
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="plugin-of-glory.js"></script>
+	<script>
+		jQuery.noConflict();
+		jQuery(function ($) {
+			$('.greenify').greenify();
+		});
+	</script>
 </body>
 </html>
