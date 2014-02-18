@@ -31,6 +31,27 @@
 		strong {
 			color: rgb(231, 95, 88);
 		}
+		/* http://www.john-smith.me/emulating--lt-blink-gt--using-webkit-css3-animation */
+		@-webkit-keyframes blink {
+			from { opacity: 1.0; }
+			to { opacity: 0.0; }
+		}
+		@-moz-keyframes blink {
+			from { opacity: 1.0; }
+			to { opacity: 0.0; }
+		}
+		@keyframes blink {
+			from { opacity: 1.0; }
+			to { opacity: 0.0; }
+		}
+		.panic {
+			-webkit-animation: blink 1s cubic-bezier(1.0, 0, 0, 1.0) infinite;
+			-moz-animation: blink 1s cubic-bezier(1.0, 0, 0, 1.0) infinite;
+			animation: blink 1s cubic-bezier(1.0, 0, 0, 1.0) infinite;
+			color: red;
+			font-size: 200%;
+			text-align: center;
+		}
 	</style>
 
 	<!--
@@ -63,6 +84,7 @@
 		jQuery.noConflict();
 		jQuery(function ($) {
 			$('.greenify').greenify();
+			$.panic();
 		});
 	</script>
 </body>

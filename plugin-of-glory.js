@@ -11,8 +11,28 @@
     return this;
   };
 
-  $.monetize = function () {
-    alert('SHOW ME THE $$$!');
+  /*
+   * Various ways to iterate and map over collections:
+   *
+   * [].forEach: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+   * [].map: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+   * _.map: http://underscorejs.org/#map
+  */
+  $.panic = function () {
+    var panicClass, messages = [];
+
+    for (var i = 0; i < 3; i++) {
+      messages.push(document.createElement('p'));
+
+      panicClass = document.createAttribute('class');
+      panicClass.nodeValue = 'panic';
+      messages[i].setAttributeNode(panicClass);
+    }
+    messages[0].appendChild(document.createTextNode('PANIC!'));
+    messages[1].appendChild(document.createTextNode('WARNING!'));
+    messages[2].appendChild(document.createTextNode('DANGER!'));
+
+    $('#container').append(messages);
   };
 
 })(window.jQuery);
