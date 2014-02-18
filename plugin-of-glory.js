@@ -19,19 +19,14 @@
    * [].map: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
    * _.map: http://underscorejs.org/#map
   */
-  $.panic = function () {
+  $.panic = function (container) {
     var messages = _.map(['PANIC', 'WARNING', 'DANGER'], function (message) {
-      var p = document.createElement('p');
-      p.appendChild(document.createTextNode(message + '!'));
-
-      var panicClass = document.createAttribute('class');
-      panicClass.nodeValue = 'panic';
-      p.setAttributeNode(panicClass);
-
-      return p;
+      return $('<p>')
+        .addClass('panic')
+        .text(message + '!');
     });
 
-    $('#container').append(messages);
+    $(container).append(messages);
   };
 
 })(window.jQuery, window._);
